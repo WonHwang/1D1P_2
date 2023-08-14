@@ -12,4 +12,5 @@ def solution(n):
         answer += int(digit) * tmp
         tmp *= 3
     
+    
     return answer
