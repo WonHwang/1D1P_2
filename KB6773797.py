@@ -1,4 +1,4 @@
-# vim test
+# vim test and git test
 
 N = int(input())
 
