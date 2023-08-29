@@ -1,4 +1,4 @@
-# vim test and git test
+# vim test and git test and credential config test
 
 N = int(input())
 
