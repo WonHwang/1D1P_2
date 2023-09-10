@@ -24,4 +24,4 @@ def solution(s):
 
 print(solution("banana")) # 3
 print(solution("abracadabra")) # 6
-print(solution("aaabbaccccabba")) # 3
+print(solution("aaabbaccccabba")) # 3P
