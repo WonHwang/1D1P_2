@@ -1,3 +1,5 @@
+# SWEA A형용 2문제
+
 for tc in range(1, int(input())+1):
     
     N = int(input())
