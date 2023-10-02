@@ -10,4 +10,5 @@ def solution(common):
         r = b // a
         answer = common[-1] * r
         
+        
     return answer
