@@ -1,0 +1,1 @@
+solution=lambda x:sum(x[::2]) if sum(x[::2])>sum(x[1::2]) else sum(x[1::2])
