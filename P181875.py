@@ -1,0 +1,1 @@
+solution=lambda x:[x[i].upper() if i%2 else x[i].lower() for i in range(len(x))]
