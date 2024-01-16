@@ -1,0 +1,1 @@
+solution=lambda x,y:[x for x in range(x, y+1)]
