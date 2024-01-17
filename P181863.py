@@ -1,0 +1,1 @@
+solution=lambda x:'rn'.join(x.split('m'))
