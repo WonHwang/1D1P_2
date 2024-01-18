@@ -1,0 +1,1 @@
+solution=lambda x,y:[n for n in y if not n%x]
