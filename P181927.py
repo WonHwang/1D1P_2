@@ -1,0 +1,1 @@
+solution=lambda x:x+[x[-1]-x[-2]]if x[-1]>x[-2] else x+[2*x[-1]]
