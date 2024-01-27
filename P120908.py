@@ -1,0 +1,1 @@
+solution=lambda x,y:[2,1][int(y in x)]
