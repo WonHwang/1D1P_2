@@ -1,0 +1,1 @@
+solution=lambda a:int(''.join([str(x) for x in a if x%2]))+int(''.join([str(x) for x in a if x%2==0]))
