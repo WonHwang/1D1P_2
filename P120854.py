@@ -1,0 +1,1 @@
+solution=lambda x:[len(y) for y in x]
