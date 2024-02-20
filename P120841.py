@@ -1,0 +1,1 @@
+solution = lambda x:(1 if x[0]>0 else 3) if x[0]*x[1]>0 else (2 if x[0]<0 else 4)
