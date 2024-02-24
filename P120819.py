@@ -1,0 +1,1 @@
+solution=lambda x:[x//5500,x%5500]
