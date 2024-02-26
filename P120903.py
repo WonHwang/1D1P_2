@@ -1,0 +1,1 @@
+solution=lambda x,y:len(set(x).intersection(set(y)))
