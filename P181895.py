@@ -1,0 +1,1 @@
+solution=lambda x,y:sum([[x[i] for i in range(j[0],j[1]+1)] for j in y], [])
