@@ -1,0 +1,1 @@
+solution=lambda x,y:max(int(str(x)+str(y)),int(str(y)+str(x)))
