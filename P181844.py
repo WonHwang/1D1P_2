@@ -1,0 +1,1 @@
+solution=lambda x,y:list(filter(lambda z:z not in y,x))
