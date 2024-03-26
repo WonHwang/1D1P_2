@@ -1,0 +1,1 @@
+solution=lambda x:[len(x)-sorted(x).index(x[i]) for i in range(len(x))]
