@@ -12,7 +12,6 @@ class Solution {
         String tmp = "";
         int cnt = 0;
         int cnt2 = 0;
-        boolean flag;
         while (!s.equals("1")) {              
             cnt2 += s.length();
             for (int i=0; i<s.length(); i++) {
