@@ -1,4 +1,4 @@
-class Solution {
+class P70129 {
     public String toBinary(int l) {
         String result = "";
         while (l != 0) {

@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class P12939 {
     public String solution(String s) {
         String[] nums = s.split(" ");
         int[] numbers = new int[nums.length];

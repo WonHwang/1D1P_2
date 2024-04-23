@@ -1,4 +1,4 @@
-class Solution {
+class P12945 {
     public int solution(int n) {
         int[] arr = new int[n+1];
         arr[0] = 0;
