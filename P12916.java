@@ -1,4 +1,4 @@
-class Solution {
+class P12916 {
     boolean solution(String s) {
         int cntp = 0;
         int cnty = 0;
