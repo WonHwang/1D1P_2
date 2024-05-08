@@ -1,6 +1,6 @@
 import java.util.Stack;
 
-class Solution {
+class P12909 {
     boolean solution(String s) {
         Stack<String> stack = new Stack<>();
         for (int i=0; i<s.length(); i++) {
