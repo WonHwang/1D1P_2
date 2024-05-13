@@ -12,6 +12,9 @@ public class P120896 {
         for (char c:dict.keySet()) {
             if (dict.get(c) == 1) answer += c;
         }
+        char[] chars = answer.toCharArray();
+        Arrays.sort(chars);
+        answer = new String(chars);
         return answer;
     }
 }
