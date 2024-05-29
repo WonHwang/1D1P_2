@@ -5,5 +5,6 @@ public class P181952 {
         Scanner sc = new Scanner(System.in);
         String a = sc.next();
         System.out.println(a);
+        sc.close();
     }
 }
