@@ -1,4 +1,4 @@
-class Solution {
+class P120813 {
     public int[] solution(int n) {
         int[] answer;
         if (n%2 == 1) answer = new int[(n/2)+1];
