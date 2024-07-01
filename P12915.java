@@ -1,7 +1,7 @@
 import java.util.Arrays;
 import java.util.Comparator;
 
-class 12915 {
+class P12915 {
     public String[] solution(String[] strings, int n) {
         Arrays.sort(strings, new Comparator<String>() {
             @Override
