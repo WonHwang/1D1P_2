@@ -1,132 +1,175 @@
-from collections import deque
-
-def init_visited(visited):
-    for key in visited:
-        visited[key] = 0
-
-def is_all_visited(visited):
-    for key in visited:
-        if not visited.get(key):
+def is_donut(node, ins, outs):
+    start = node
+    
+    while True:
+        if len(ins[node]) != 1 or len(outs[node]) != 1:
             return False
-    return True
+        node = outs[node][0]
+        
+        if node == start:
+            return True
 
-def is_donut(node, connection, visited):
+def visit_donut(node, outs, visited):
+    start = node
+    
+    while True:
+        visited[node] = 1
+        node = outs[node][0]
+        if node == start:
+            return
+
+def is_stick(node, ins, outs):
     
     start = node
-    queue = deque()
-    queue.append(node)
-    visited[node] = 1
     
-    while queue:
-        node = queue.popleft()
-        
-        if len(connection[node]) != 1:
-            return False
-        
-        node = connection[node][0]
-        if not visited[node]:
-            visited[node] = 1
-            queue.append(node)
-        
-        else:
-            if node == start:
-                return True
+    if not outs[node] and not ins[node]:
+        return True, node
     
-    return False
-
-def is_stick(node, connection, visited):
-    
-    queue = deque()
-    queue.append(node)
-    visited[node] = 1
-    
-    while queue:
-        node = queue.popleft()
-        
-        if not len(connection[node]):
-            return True
-        
-        if len(connection[node]):
-            return False
-        
-        node = connection[node][0]
-        
-        if visited[node]:
-            return False
-        
-        visited[node] = 1
-        queue.append(node)
-
-    return False
-
-def is_eight(node, connection, visited):
-    
-    center = 0
-    visited = [0] * 1000001
-    visited[node] = 1
-    queue = deque()
-    queue.append(node)
-    while queue:
-        node = queue.popleft()
-        if len(connection[node]) == 2:
-            center = node
-            break
-        
-        if len(connection[node]) == 1:
-            node = connection[node][0]
-            if not visited[node]:
-                visited[node] = 1
-                queue.append(node)
+    if not outs[node] and len(ins[node]) == 1:
+        node = ins[node][0]
+        while True:
+            if len(outs[node]) == 1 and not ins[node]:
+                return True, node
+            elif len(outs[node]) == 1 and len(ins[node]) == 1:
+                node = ins[node][0]
+                if node == start:
+                    return False, 0
             else:
+                return False, 0
+    
+    if len(outs[node]) == 1 and len(ins[node]) == 1:
+        node = ins[node][0]
+        while True:
+            if len(outs[node]) == 1 and not ins[node]:
+                stick_start_node = node
+                break
+            elif len(outs[node]) == 1 and len(ins[node]) == 1:
+                node = ins[node][0]
+                if node == start:
+                    return False, 0
+            else:
+                return False, 0
+    
+    if not ins[node] and len(outs[node]) == 1:
+        stick_start_node = node
+        node = outs[node][0]
+        while True:
+            if len(outs[node]) == 1 and len(ins[node]) == 1:
+                node = outs[node][0]
+            elif not outs[node] and len(ins[node]) == 1:
+                return True, stick_start_node
+            else:
+                return False, 0
+    
+    if len(ins[node]) > 1 or len(outs[node]) > 1:
+        return False, 0
+    
+    node = stick_start_node
+    while True:
+        if not outs[node]:
+            return True, stick_start_node
+        
+        if outs[node]:
+            node = outs[node][0]
+
+def visit_stick(node, outs, visited):
+    while True:
+        visited[node] = 1
+        if not outs[node]:
+            return
+        node = outs[node][0]
+
+def is_eight(node, ins, outs):
+    start = node
+    while True:
+        if len(outs[node]) == 2 and len(ins[node]) == 2:
+            center = node
+            break        
+        elif len(outs[node]) == 1 and len(ins[node]) == 1:
+            node = outs[node][0]
+            if node == start:
+                return False, 0
+        else:
+            return False, 0
+        
+    node = outs[center][0]
+    while True:
+        if len(outs[node]) == 2 and len(ins[node]) == 2 and node == center:
+            break
+        elif len(outs[node]) == 1 and len(ins[node]) == 1:
+            node = outs[node][0]
+        else:
+            return False, 0
+    
+    node = outs[center][1]
+    while True:
+        if len(outs[node]) == 2 and len(ins[node]) == 2 and node == center:
+            return True, center
+        elif len(outs[node]) == 1 and len(ins[node]) == 1:
+            node = outs[node][0]
+        else:
+            return False, 0
+
+def visit_eight(node, outs, visited):
+    center = node
+    visited[center] = 1
+    node = outs[center][0]
+    while True:
+        if node == center:
+            break
+        visited[node] = 1
+        node = outs[node][0]
+    
+    node = outs[center][1]
+    while True:
+        if node == center:
+            break
+        visited[node] = 1
+        node = outs[node][0]
+        
+def get_ins_outs(edges, point, Max):
+    
+    ins, outs = dict(), dict()
+    for edge in edges:
+        a, b = edge[0], edge[1]
+        if a != point:
+            if a != point and b != point:
+                if outs.get(a):
+                    outs[a].append(b)
+                else:
+                    outs[a] = [b]
+                if ins.get(b):
+                    ins[b].append(a)
+                else:
+                    ins[b] = [a]
+    
+    for node in range(1, Max+1):
+        if not ins.get(node):
+            ins[node] = []
+        if not outs.get(node):
+            outs[node] = []
+    
+    return ins, outs
+
+def get_visited(point, Max):
+    visited = dict()
+    for i in range(1, Max+1):
+        if i != point:
+            visited[i] = 0
+    
+    return visited
+
+def check_all_visited(point, visited, Max):
+    for i in range(1, Max+1):
+        if i != point:
+            if not visited[i]:
                 return False
-            
-    if not center:
-        return False
-    
-    cnt1 = 0
-    visited = [0] * 1000001
-    visited[center] = 1
-    node = connection[center][0]
-    visited[node] = 1
-    while True:
-        if len(connection[node]) == 2:
-            if node == center:
-                break
-        
-        if len(connection[node]) != 1:
-            return False
-        
-        node = connection[node][0]
-        visited[node] = 1
-        cnt1 += 1
-    
-    cnt2 = 0
-    visited = [0] * 1000001
-    visited[center] = 1
-    node = connection[center][1]
-    visited[node] = 1
-    while True:
-        if len(connection[node]) == 2:
-            if node == center:
-                break
-        
-        if len(connection[node]) != 1:
-            return False
-        
-        node = connection[node][0]
-        visited[node] = 1
-        cnt2 += 1
-    
-    if cnt1 != cnt2:
-        return False
     
     return True
 
 def solution(edges):
-    print(edges)
-    answer = [0, 0, 0, 0]
-    connection = [[] for _ in range(1000001)]
-    visited = dict()
+    answer = []
+    ins, outs = dict(), dict()
     Max = 0
     for edge in edges:
         a, b = edge[0], edge[1]
@@ -134,37 +177,40 @@ def solution(edges):
             Max = a
         if b > Max:
             Max = b
-        connection[a].append(b)
-        visited[a] = 0
-        visited[b] = 0
-
+        if outs.get(a):
+            outs[a].append(b)
+        else:
+            outs[a] = [b]
+        if ins.get(b):
+            ins[b].append(a)
+        else:
+            ins[b] = [a]
     for point in range(1, Max+1):
-        print("-----------------------")
-        print(f"point: {point} start")
-        donut, stick, eight = 0, 0, 0
-        init_visited(visited)
-        visited[point] = 1
-        for node in connection[point]:
-            if is_donut(node, connection, visited):
-                print(f"node: {node} is donut")
-                donut += 1
-            elif is_stick(node, connection, visited):
-                print(f"node: {node} is stick")
-                stick += 1
-            elif is_eight(node, connection, visited):
-                print(f"node: {node} is eight")
-                eight += 1
-            else:
-                print(f"node: {node} is nothing")
-                donut, stick, eight = 0, 0, 0
-                break
-        
-        if is_all_visited(visited):
-            if donut or stick or eight:
-                answer = [point, donut, stick, eight]
-                break
-        
-        print(f"{point} is not point")
+        if not ins.get(point):
+            ins[point] = []
+        if not outs.get(point):
+            outs[point] = []
+    
+    for point in range(1, Max+1):
+        ins_, outs_ = get_ins_outs(edges, point, Max)
+        visited = get_visited(point, Max)
+        d, s, e = 0, 0, 0
+        for i in range(1, Max+1):
+            if i != point and not visited[i]:
+                if is_donut(i, ins_, outs_):
+                    visit_donut(i, outs_, visited)
+                    d += 1
+                res, start = is_stick(i, ins_, outs_)
+                if res:
+                    visit_stick(start, outs_, visited)
+                    s += 1
+                res, start = is_eight(i, ins_, outs_)
+                if res:
+                    visit_eight(start, outs_, visited)
+                    e += 1
+        if (check_all_visited(point, visited, Max)):
+            answer = [point, d, s, e]
+            break
         
     return answer
 
