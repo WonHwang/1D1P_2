@@ -1,4 +1,4 @@
-class Solution {
+class P12936 {
     public int[] solution(int n, long k) {
         int[] answer = new int[n];
         long[] fac = new long[21];
