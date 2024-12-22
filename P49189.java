@@ -4,7 +4,7 @@ import java.util.ArrayList;
 class P49189 {
     public int solution(int n, int[][] edge) {
         
-        ArrayList[] info = new ArrayList[n+1];
+        ArrayList<Integer>[] info = new ArrayList[n+1];
         for (int i=0; i<n+1; i++) {
             info[i] = new ArrayList<Integer>();
         }
