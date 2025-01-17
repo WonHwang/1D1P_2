@@ -1,6 +1,5 @@
 public class P161990 {
     public int[] solution(String[] wallpaper) {
-        int[] answer = {};
         int l = 50;
         int t = 50;
         int r = 0;
