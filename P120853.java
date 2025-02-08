@@ -6,7 +6,7 @@ class P120853 {
         String[] ss = s.split(" ");
         for (String c : ss) {
             if ("Z".equals(c)) stack.pop();
-            else stack.push(Integer.parseInt(c));
+            else stack.push(Integer.valueOf(c));
         }
 
         int answer = 0;
