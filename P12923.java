@@ -1,5 +1,3 @@
-import java.util.*;
-
 class P12923 {
     public int getDivider(int n) {
         int res = 1;
