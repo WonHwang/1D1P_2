@@ -4,9 +4,10 @@ import java.util.ArrayList;
 class P49189 {
     public int solution(int n, int[][] edge) {
         
+        @SuppressWarnings("unchecked")
         ArrayList<Integer>[] info = new ArrayList[n+1];
         for (int i=0; i<n+1; i++) {
-            info[i] = new ArrayList<Integer>();
+            info[i] = new ArrayList<>();
         }
         
         for (int[] e : edge) {
