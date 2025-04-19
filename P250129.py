@@ -1,4 +1,4 @@
-olution(route):
+def solution(route):
     east = 0
     north = 0
     for i in route:
