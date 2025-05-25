@@ -1,21 +1,17 @@
 N = int(input())
-nums = list(map(int, input().split()))
-answer = 0
+nums = list(map(int, input().split()))[::-1]
+DP = [dict() for _ in range(N)]
+DP[0][nums[0]] = 1
+for i in range(1, N):
+    num = nums[i]
+    for target in DP[i-1]:
+        cnt = DP[i-1][target]
+        if target + num <= 20:
+            DP[i][target+num] = DP[i].get(target+num, 0) + cnt
+        if target - num >= 0:
+            DP[i][target-num] = DP[i].get(target-num, 0) + cnt
 
-def dfs(depth, res):
-    
-    global answer
-    
-    if not (0 <= res <= 20):
-        return
-    
-    if depth == N-1:
-        if res == nums[depth]:
-            answer += 1
-        return
-    
-    dfs(depth+1, res+nums[depth])
-    dfs(depth+1, res-nums[depth])
-
-dfs(0, 0)
-print(answer)
+if DP[N-2].get(nums[N-1]):
+    print(DP[N-2][nums[N-1]])
+else:
+    print(0)
