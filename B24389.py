@@ -13,7 +13,7 @@ def plusone(N):
 N = bin(int(input()))[2:].zfill(32)
 M = plusone(reverse(N))
 
-answer = 0
+answer = 0∑
 for i in range(32):
     if N[i] != M[i]:
         answer += 1
