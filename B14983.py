@@ -35,7 +35,7 @@ for i in range(n):
     
     count = 0
     for i in range(n):
-        if distance[i] <= r:
+        if distance[i] <= m:
             count += items[i]
     
     if answer < count:
