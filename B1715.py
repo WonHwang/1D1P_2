@@ -8,7 +8,7 @@ for _ in range(N):
     heappush(heap, int(input()))
 
 answer = 0
-while len(heap) >= 2:
+while len(heap) > 1:
     num = heappop(heap) + heappop(heap)
     answer += num
     heappush(heap, num)
