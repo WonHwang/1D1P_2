@@ -26,4 +26,8 @@ for last in range(N-1, 0, -1):
     if idx != last:
         nums[idx], nums[last] = nums[last], nums[idx]
     
+    if is_same(nums, target):
+        answer = 1
+        break
+    
 print(answer)
